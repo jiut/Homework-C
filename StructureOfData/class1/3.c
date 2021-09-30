@@ -46,32 +46,32 @@ void PrintList(LinkList L, int n)
 
 LinkList ListDelete(LinkList L, int i, int m)
 {
-    // LNode *p, *prev;
-    // int j = 1;
-    // p = L;
+    LNode *p, *prev;
+    int j = 1;
+    p = L;
 
-    // while (j < i)
-    // {
-    //     prev = p;
-    //     p = p->next;
-    //     j++;
-    // }
+    while (j < i)
+    {
+        prev = p;
+        p = p->next;
+        j++;
+    }
 
-    // while (p != p->next)
-    // {
-    //     j = 1;
-    //     while (j < m)
-    //     {
-    //         j++;
-    //         prev = p;
-    //         p = p->next;
-    //     }
-    //     prev->next = p->next;
-    //     if( p == L)
-    //         L = L->next;
-    //     free(p);
-    //     p = prev->next;
-    // }
+    while (p != p->next)
+    {
+        j = 1;
+        while (j < m)
+        {
+            j++;
+            prev = p;
+            p = p->next;
+        }
+        prev->next = p->next;
+        if( p == L)
+            L = L->next;
+        free(p);
+        p = prev->next;
+    }
 
     return L;
 }
@@ -91,9 +91,7 @@ int main()
         printf("\n3-DeleteElem from LinkList:\n");
         printf("input i,m=(i,m)\n");
         scanf("%d,%d", &i, &m);
-        // PrintList(ListDelete(L, i, m), 1);
-        ListDelete(L, i, m);
-        PrintList(L, 1);
+        PrintList(ListDelete(L, i, m), 1);
     }
     else
         printf("ERROR");
