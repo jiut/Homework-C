@@ -36,7 +36,7 @@ int CreateList_sq(Sqlist *L, int n)
     int i;
     for (i = 0; i < n; i++)
     {
-        printf("input data %d", i + 1);
+        printf("input data %d\n", i + 1);
         scanf("%d", &e);
         if (!ListInsert_sq(L, i + 1, e))
             return ERROR;
@@ -79,11 +79,11 @@ int ListInsert_sq(Sqlist *L, int i, ElemType e)
 int ListDelete_sq(Sqlist *L, int i)
 {
     int k;
-    if (i < 1 || i > L->length )
+    if (i < 1 || i > L->length)
         return ERROR;
-    for (k = i - 1; k >= L->length - 1; k--)
+    for (k = i - 1; k < L->length - 1; k++)
     {
-        L->slist[k] = L->slist[k - 1];
+        L->slist[k] = L->slist[k + 1];
     }
     if (L->length - L->listsize >= INCREM)
     {
@@ -99,7 +99,13 @@ int ListDelete_sq(Sqlist *L, int i)
 /*在顺序表中查找指定值元素，返回其序号*/
 int ListLocate(Sqlist *L, ElemType e)
 {
-
+    int i;
+    for (i = 0; i < L->length; i++){
+        if( L->slist[i] == e ){
+            return i+1;
+        }
+    }
+    return ERROR;
 }
 
 int main()
@@ -121,6 +127,15 @@ int main()
         printf("\n3-Print Sqlist:\n");
         PrintList_sq(&sl);
         printf("\n");
+        printf("\nplease input delete location:\n");
+        scanf("%d", &m);
+        ListDelete_sq(&sl, m);
+        printf("\n4-Print Sqlist:\n");
+        PrintList_sq(&sl);
+        printf("\n");
+        printf("\nplease input number to be located:\n");
+        scanf("%d", &m);
+        printf("\nLocation is: %d\n",ListLocate(&sl, m));
     }
     else
         printf("ERROR");
