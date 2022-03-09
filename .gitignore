@@ -42,6 +42,7 @@
 *.su
 *.idb
 *.pdb
+sandbox.*
 
 # Kernel Module Compile Results
 *.mod*
